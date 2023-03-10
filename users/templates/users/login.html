@@ -7,20 +7,19 @@
       <div class="card">
         <div class="card-header text-white bg-info">
           <div class="card-title">
-            ADD ITEM
+            login
           </div>
         </div>
         <div class="card-body">
           <form method="POST">
             {% csrf_token %}
             {% for field in form %}
-            <div class="mb-3">
-              {{ field.name }}
-              <br>
-              {{ field }}
-            </div>
+              <div class="mb-3">
+                {{ field.name }}
+                {{ field }}
+              </div>
             {% endfor %}
-            <button type="submit">ADD</button>
+            <button class="btn-info" type="submit">Login</button>
           </form>
         </div>
       </div>

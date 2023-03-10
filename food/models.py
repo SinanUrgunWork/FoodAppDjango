@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 
 
@@ -7,8 +8,11 @@ class Item(models.Model):
 
     def __str__(self):
         return self.item_name
-
+    user_name= models.ForeignKey(User,on_delete=models.CASCADE,default=1)
     item_name = models.CharField(max_length=200)
     item_desc = models.CharField(max_length=200)
     item_price = models.IntegerField()
-    item_img = models.CharField(max_length=500,default="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.everestkitchenpa.com%2Fassets%2Fpages%2FcoldBeverages.html&psig=AOvVaw0EOhjaJvqv0I6_sRj0h9Sf&ust=1676898737183000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCPiK9NbWof0CFQAAAAAdAAAAABAJ")
+    item_img = models.CharField(max_length=500,default="https://livingstonbagel.com/wp-content/uploads/2016/11/food-placeholder.jpg")
+
+    def get_absolute_url(self):
+        return reverse("food:detail", kwargs={"pk":self.pk})
